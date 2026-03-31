@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My Trick Pony — Custom graphic design, t-shirt printing, silk-screen, embroidery, and personalized apparel in San Francisco, CA. By appointment only." />
+  <title>My Trick Pony | Custom Graphics & Apparel · San Francisco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ════════════════════════════════════════
+       TOKENS & RESET
+    ════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0A0A0A;
+      --off-black: #111111;
+      --ink:     #1C1C1C;
+      --white:   #F4F2EE;
+      --off-white: #ECEAE5;
+      --red:     #D42B2B;
+      --red-dark:#A81E1E;
+      --grey:    #8A8A8A;
+      --grey-lt: #C8C5BF;
+      --border:  rgba(244,242,238,0.1);
+      --display: 'Bebas Neue', sans-serif;
+      --cond:    'Barlow Condensed', sans-serif;
+      --body:    'Barlow', sans-serif;
+      --nav-h:   68px;
+      --r:       4px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--body);
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--red); color: var(--white); }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ════════════════════════════════════════
+       SCROLLBAR
+    ════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    /* ════════════════════════════════════════
+       UTILITY
+    ════════════════════════════════════════ */
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    .eyebrow {
+      font-family: var(--cond);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      color: var(--white);
+    }
+    .section-title span { color: var(--red); }
+
+    /* ════════════════════════════════════════
+       GRAIN OVERLAY
+    ════════════════════════════════════════ */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.028;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 900;
+      display: flex; align-items: center;
+      padding: 0 3rem;
+      transition: background 0.4s, border-bottom 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom-color: var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-logo:hover { color: var(--grey-lt); }
+
+    .nav-links {
+      display: flex; gap: 2.5rem;
+      list-style: none;
+      margin-left: auto;
+      margin-right: 2.5rem;
+    }
+    .nav-links a {
+      font-family: var(--cond);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey-lt);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 1px;
+      background: var(--red);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--white); }
+
+    .nav-cta {
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--cond);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--red);
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: transparent; color: var(--red); transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      padding: 4px; margin-left: auto;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed; inset: 0; top: var(--nav-h);
+      background: var(--black);
+      z-index: 850;
+      flex-direction: column; align-items: flex-start; justify-content: center;
+      padding: 3rem;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--display);
+      font-size: 3rem;
+      color: var(--white);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--red); padding-left: 0.5rem; }
+
+    /* ════════════════════════════════════════
+       PAGE SYSTEM
+    ════════════════════════════════════════ */
+    .page { display: none; padding-top: var(--nav-h); }
+    .page.active { display: block; }
+
+    /* ════════════════════════════════════════
+       BUTTONS
+    ════════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--cond);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border: 1.5px solid;
+      transition: background 0.22s, color 0.22s, transform 0.15s;
+      cursor: pointer;
+      background: none;
+    }
+    .btn-solid {
+      background: var(--red); color: var(--white); border-color: var(--red);
+    }
+    .btn-solid:hover { background: var(--red-dark); border-color: var(--red-dark); transform: translateY(-2px); }
+    .btn-outline {
+      color: var(--white); border-color: rgba(244,242,238,0.35);
+    }
+    .btn-outline:hover { border-color: var(--white); transform: translateY(-2px); }
+    .btn-red-outline {
+      color: var(--red); border-color: var(--red);
+    }
+    .btn-red-outline:hover { background: var(--red); color: var(--white); transform: translateY(-2px); }
+
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.2s; }
+    .btn:hover svg { transform: translate(3px, -3px); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* diagonal divider */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%;
+      height: 100%;
+      background: var(--off-black);
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
+
+    .hero-left {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 3rem 5rem 3rem;
+    }
+
+    .hero-eyebrow { margin-bottom: 1.5rem; animation: fadeUp 0.7s ease both; }
+
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(4rem, 9vw, 8.5rem);
+      line-height: 0.88;
+      letter-spacing: 0.01em;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-h1 em { display: block; color: var(--red); font-style: normal; }
+    .hero-h1 small {
+      display: block;
+      font-family: var(--cond);
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--grey-lt);
+      margin-top: 0.4rem;
+    }
+
+    .hero-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--grey-lt);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-badge {
+      margin-top: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .hero-badge-icon {
+      width: 48px; height: 48px;
+      border: 1.5px solid var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .hero-badge p { font-size: 0.82rem; color: var(--grey); line-height: 1.5; }
+    .hero-badge strong { color: var(--white); font-weight: 500; }
+
+    /* hero right — visual mosaic */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      padding: 3rem 2.5rem 3rem 3rem;
+    }
+
+    .hero-tile {
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-tile-inner {
+      width: 100%; height: 100%; min-height: 170px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-tile-inner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: inherit;
+      filter: brightness(0.85);
+      transition: filter 0.3s;
+    }
+    .hero-tile:hover .hero-tile-inner::before { filter: brightness(1.1); }
+
+    .ht1 { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
+    .ht2 { background: linear-gradient(135deg, #D42B2B 0%, #A81E1E 100%); }
+    .ht3 { background: linear-gradient(135deg, #222 0%, #333 100%); }
+    .ht4 { background: linear-gradient(135deg, #1a1a1a 0%, #111 100%); }
+    .hero-tile:nth-child(1) { grid-row: span 2; }
+
+    .tile-emoji { font-size: 2.8rem; position: relative; z-index: 1; }
+    .tile-label {
+      font-family: var(--cond);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(244,242,238,0.65);
+      position: relative; z-index: 1;
+    }
+
+    /* scrolling ticker */
+    .ticker {
+      background: var(--red);
+      overflow: hidden;
+      padding: 0.7rem 0;
+      display: flex;
+    }
+    .ticker-inner {
+      display: flex; gap: 0;
+      white-space: nowrap;
+      animation: ticker 20s linear infinite;
+    }
+    .ticker-inner span {
+      font-family: var(--display);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      padding: 0 2rem;
+      display: inline-flex; align-items: center; gap: 2rem;
+    }
+    .ticker-inner span::after { content: '✦'; opacity: 0.5; }
+
+    /* intro strip */
+    .intro-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .intro-left {
+      padding: 5rem 3rem;
+      border-right: 1px solid var(--border);
+    }
+    .intro-left h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      line-height: 0.93;
+      margin-top: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+    .intro-left h2 span { color: var(--red); }
+    .intro-left p {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--grey-lt);
+      max-width: 480px;
+      margin-bottom: 1rem;
+    }
+
+    .intro-right {
+      padding: 5rem 3rem;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .stat-row {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-row:first-child { padding-top: 0; }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--red);
+      min-width: 90px;
+    }
+    .stat-text h4 {
+      font-family: var(--cond);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .stat-text p { font-size: 0.88rem; color: var(--grey); line-height: 1.5; }
+
+    /* process steps */
+    .process-section {
+      padding: 5rem 3rem;
+      border-top: 1px solid var(--border);
+      background: var(--off-black);
+    }
+    .process-section .eyebrow { margin-bottom: 1.2rem; }
+    .process-section .section-title { margin-bottom: 3rem; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .step {
+      padding: 2.5rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step-num {
+      font-family: var(--display);
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(212,43,43,0.15);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .step h3 {
+      font-family: var(--cond);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+      color: var(--white);
+    }
+    .step p { font-size: 0.9rem; color: var(--grey-lt); line-height: 1.7; }
+    .step-arrow {
+      position: absolute; right: -14px; top: 50%;
+      transform: translateY(-50%);
+      width: 28px; height: 28px;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      z-index: 2;
+    }
+    .step:last-child .step-arrow { display: none; }
+
+    /* CTA banner */
+    .cta-banner {
+      background: var(--red);
+      padding: 4rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-banner h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 0.95;
+      color: var(--white);
+    }
+    .cta-banner p { font-size: 0.9rem; color: rgba(244,242,238,0.7); margin-top: 0.5rem; }
+    .btn-black { background: var(--black); color: var(--white); border-color: var(--black); }
+    .btn-black:hover { background: var(--off-black); border-color: var(--off-black); transform: translateY(-2px); }
+
+    /* ════════════════════════════════════════
+       PAGE HEADERS
+    ════════════════════════════════════════ */
+    .page-header {
+      padding: 4rem 3rem 3rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: attr(data-bg-text);
+      position: absolute;
+      right: -2rem; top: -1rem;
+      font-family: var(--display);
+      font-size: clamp(8rem, 18vw, 16rem);
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .page-header .eyebrow { margin-bottom: 1rem; }
+    .page-header p {
+      font-size: 1rem; color: var(--grey-lt);
+      line-height: 1.7; max-width: 560px;
+      margin-top: 1rem;
+    }
+
+    /* ════════════════════════════════════════
+       PORTFOLIO
+    ════════════════════════════════════════ */
+    .filter-bar {
+      padding: 1.5rem 3rem;
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      font-family: var(--cond);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--grey);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--red); color: var(--white); border-color: var(--red);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .port-item {
+      position: relative; overflow: hidden;
+      background: var(--off-black);
+      cursor: pointer;
+    }
+    .port-item:nth-child(4) { grid-column: span 2; }
+    .port-item:nth-child(7) { grid-column: span 2; }
+
+    .port-img {
+      width: 100%; height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      transition: transform 0.5s ease;
+      position: relative;
+    }
+    .port-item:nth-child(4) .port-img,
+    .port-item:nth-child(7) .port-img { height: 360px; }
+    .port-item:hover .port-img { transform: scale(1.05); }
+
+    .p1 { background: linear-gradient(135deg, #1a1a1a, #2d2d2d); }
+    .p2 { background: linear-gradient(135deg, #D42B2B22, #1a1a1a); }
+    .p3 { background: linear-gradient(135deg, #222, #1a1a1a); }
+    .p4 { background: linear-gradient(160deg, #1c1c1c, #2a1a1a, #D42B2B18); }
+    .p5 { background: linear-gradient(135deg, #1a1a1a, #222); }
+    .p6 { background: linear-gradient(135deg, #D42B2B15, #1c1c1c); }
+    .p7 { background: linear-gradient(160deg, #1a1a1a, #202020, #D42B2B12); }
+    .p8 { background: linear-gradient(135deg, #222, #1a1a1a); }
+    .p9 { background: linear-gradient(135deg, #1c1c1c, #2a2a2a); }
+
+    .port-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.3) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem;
+    }
+    .port-item:hover .port-overlay { opacity: 1; }
+    .port-cat {
+      font-family: var(--cond);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.3rem;
+    }
+    .port-overlay h4 {
+      font-family: var(--cond);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .port-overlay p { font-size: 0.8rem; color: var(--grey-lt); margin-top: 0.2rem; }
+
+    /* ════════════════════════════════════════
+       SERVICES
+    ════════════════════════════════════════ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .svc {
+      padding: 3rem;
+      background: var(--off-black);
+      transition: background 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .svc::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--red);
+      transition: height 0.4s ease;
+    }
+    .svc:hover::before { height: 100%; }
+    .svc:hover { background: #141414; }
+
+    .svc-num {
+      font-family: var(--display);
+      font-size: 4.5rem;
+      color: rgba(212,43,43,0.12);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .svc-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .svc h3 {
+      font-family: var(--cond);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+    .svc p { font-size: 0.9rem; color: var(--grey-lt); line-height: 1.75; }
+    .svc-tags {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+    .svc-tag {
+      font-family: var(--cond);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      color: var(--grey);
+    }
+
+    .process-full {
+      padding: 5rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .process-full .eyebrow { margin-bottom: 1.2rem; }
+    .process-full .section-title { margin-bottom: 3.5rem; }
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--red), transparent);
+    }
+    .pt-step { padding: 0 1.5rem 0 0; }
+    .pt-dot {
+      width: 12px; height: 12px;
+      border: 2px solid var(--red);
+      background: var(--black);
+      margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .pt-step:hover .pt-dot { background: var(--red); }
+    .pt-num {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .pt-step h4 {
+      font-family: var(--cond);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .pt-step p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+
+    /* ════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════ */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-visual {
+      position: relative;
+      background: var(--off-black);
+      min-height: 550px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      border-right: 1px solid var(--border);
+    }
+    .about-visual-inner {
+      font-size: 8rem;
+      position: relative; z-index: 1;
+    }
+    .about-visual::before {
+      content: 'MTP';
+      position: absolute;
+      font-family: var(--display);
+      font-size: 18rem;
+      color: rgba(212,43,43,0.06);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .about-visual-badge {
+      position: absolute; bottom: 2rem; left: 2rem;
+      background: var(--red);
+      padding: 1rem 1.5rem;
+      font-family: var(--cond);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .about-text {
+      padding: 4rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-text .eyebrow { margin-bottom: 1.2rem; }
+    .about-text h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      line-height: 0.92; letter-spacing: 0.01em;
+      margin-bottom: 2rem;
+    }
+    .about-text h2 span { color: var(--red); }
+    .about-text p {
+      font-size: 0.97rem; color: var(--grey-lt);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .about-values {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .value-item {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .v-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(212,43,43,0.12);
+      border: 1px solid rgba(212,43,43,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .value-item h4 {
+      font-family: var(--cond);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .value-item p { font-size: 0.83rem; color: var(--grey); line-height: 1.5; }
+
+    .about-appt-notice {
+      background: var(--off-black);
+      border: 1px solid var(--red);
+      padding: 2rem 3rem;
+      margin: 3rem 3rem 0;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .appt-icon { font-size: 2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .about-appt-notice h3 {
+      font-family: var(--cond);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.3rem;
+    }
+    .about-appt-notice p { font-size: 0.9rem; color: var(--grey-lt); line-height: 1.6; }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 0;
+    }
+    .contact-info {
+      padding: 4rem 3rem;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .contact-info h3 {
+      font-family: var(--display);
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .info-block {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-block:first-of-type { border-top: 1px solid var(--border); }
+    .info-label {
+      font-family: var(--cond);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .info-value {
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.6;
+    }
+    .info-value a { transition: color 0.2s; }
+    .info-value a:hover { color: var(--red); }
+    .info-value .phone-big {
+      font-family: var(--display);
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    .appt-only-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(212,43,43,0.12);
+      border: 1px solid rgba(212,43,43,0.3);
+      color: var(--red);
+      font-family: var(--cond);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      margin-top: 0.6rem;
+      width: fit-content;
+    }
+    .appt-only-badge::before { content: '●'; font-size: 0.5rem; }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.3rem 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .day { font-size: 0.88rem; color: var(--grey); }
+    .time { font-size: 0.88rem; color: var(--white); font-weight: 500; }
+    .time.closed { color: var(--grey); }
+
+    .map-placeholder {
+      margin-top: 2rem;
+      width: 100%;
+      height: 200px;
+      background: var(--off-black);
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem;
+      font-size: 2rem;
+    }
+    .map-placeholder p {
+      font-family: var(--cond);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .map-placeholder a {
+      font-family: var(--cond);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      text-decoration: underline;
+    }
+
+    /* Contact form */
+    .contact-form-wrap {
+      padding: 4rem 3rem;
+    }
+    .contact-form-wrap h3 {
+      font-family: var(--display);
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .contact-form-wrap .sub {
+      font-size: 0.88rem;
+      color: var(--grey);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group.full { grid-column: span 2; }
+    label {
+      font-family: var(--cond);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    input, select, textarea {
+      background: var(--off-black);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 0.95rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+      border-radius: 0;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--red); }
+    input::placeholder, textarea::placeholder { color: var(--grey); }
+    select option { background: var(--off-black); }
+    textarea { min-height: 140px; resize: vertical; }
+
+    .form-submit { margin-top: 0.5rem; width: 100%; justify-content: center; }
+
+    .form-success {
+      display: none;
+      flex-direction: column; align-items: center;
+      text-align: center; padding: 4rem 2rem;
+      gap: 1rem;
+    }
+    .form-success .success-icon { font-size: 4rem; }
+    .form-success h4 {
+      font-family: var(--display);
+      font-size: 2.5rem; color: var(--red);
+    }
+    .form-success p { color: var(--grey-lt); font-size: 0.95rem; line-height: 1.7; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--off-black);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .footer-col {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .footer-col:last-child { border-right: none; }
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .footer-logo span { color: var(--red); }
+    .footer-tagline { font-size: 0.85rem; color: var(--grey); line-height: 1.6; max-width: 200px; }
+    .footer-col h5 {
+      font-family: var(--cond);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--grey);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      padding: 1rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.78rem; color: var(--grey);
+    }
+
+    /* ════════════════════════════════════════
+       ANIMATIONS
+    ════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero::after { display: none; }
+      .hero-right { display: none; }
+      .hero-left { padding: 4rem 2rem 3rem; }
+      .intro-strip { grid-template-columns: 1fr; }
+      .intro-left { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 2rem; }
+      .intro-right { padding: 3rem 2rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); }
+      .step-arrow { display: none; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .port-item:nth-child(4), .port-item:nth-child(7) { grid-column: span 1; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-timeline { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .process-timeline::before { display: none; }
+      .about-layout { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .about-text { padding: 3rem 2rem; }
+      .about-appt-notice { margin: 0 2rem 2rem; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-info { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 2rem; }
+      .contact-form-wrap { padding: 3rem 2rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-col { border-bottom: 1px solid var(--border); }
+      .page-header { padding: 3rem 2rem 2.5rem; }
+    }
+
+    @media (max-width: 700px) {
+      #nav { padding: 0 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-left { padding: 3rem 1.5rem 2.5rem; }
+      .intro-left, .intro-right { padding: 2.5rem 1.5rem; }
+      .process-section { padding: 3rem 1.5rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .cta-banner { padding: 2.5rem 1.5rem; }
+      .filter-bar { padding: 1rem 1.5rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .process-timeline { grid-template-columns: 1fr; }
+      .process-full { padding: 3rem 1.5rem; }
+      .about-text { padding: 2.5rem 1.5rem; }
+      .about-appt-notice { margin: 0 1.5rem 1.5rem; }
+      .contact-info { padding: 2.5rem 1.5rem; }
+      .contact-form-wrap { padding: 2.5rem 1.5rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-col { border-right: none; padding: 2rem 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1rem 1.5rem; }
+      .svc { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ NAV ═══════ -->
+  <nav id="nav">
+    <a href="#" class="nav-logo" onclick="showPage('home');return false;">My Trick <span>Pony</span></a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home');return false;" id="nl-home" class="active">Home</a></li>
+      <li><a href="#" onclick="showPage('portfolio');return false;" id="nl-portfolio">Portfolio</a></li>
+      <li><a href="#" onclick="showPage('services');return false;" id="nl-services">Services</a></li>
+      <li><a href="#" onclick="showPage('about');return false;" id="nl-about">About</a></li>
+      <li><a href="#" onclick="showPage('contact');return false;" id="nl-contact">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta" onclick="showPage('contact');return false;">Book Appointment</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#" onclick="showPage('home');toggleMobile();return false;">Home</a>
+    <a href="#" onclick="showPage('portfolio');toggleMobile();return false;">Portfolio</a>
+    <a href="#" onclick="showPage('services');toggleMobile();return false;">Services</a>
+    <a href="#" onclick="showPage('about');toggleMobile();return false;">About</a>
+    <a href="#" onclick="showPage('contact');toggleMobile();return false;">Contact</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HOME PAGE
+  ══════════════════════════════════════════ -->
+  <div class="page active" id="page-home">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow eyebrow">San Francisco, CA · Est. Custom Apparel &amp; Graphics</div>
+        <h1 class="hero-h1">
+          Your Vision,<em>Our Craft.</em>
+          <small>Custom graphics &amp; apparel — built from the ground up.</small>
+        </h1>
+        <p class="hero-body">From a single tee to a full branded apparel line, My Trick Pony brings your ideas to life through expert design and hands-on production. Every project is personal. Every detail matters.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn btn-solid" onclick="showPage('contact');return false;">
+            Book an Appointment
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#" class="btn btn-outline" onclick="showPage('portfolio');return false;">View Our Work</a>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-icon">📅</div>
+          <p><strong>By Appointment Only</strong><br>Call <a href="tel:4158610595" style="color:var(--red)">(415) 861-0595</a> or use our contact form to schedule your visit.</p>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-tile">
+          <div class="hero-tile-inner ht1">
+            <div class="tile-emoji">👕</div>
+            <div class="tile-label">Custom Tees</div>
+          </div>
+        </div>
+        <div class="hero-tile">
+          <div class="hero-tile-inner ht2">
+            <div class="tile-emoji">🖨️</div>
+            <div class="tile-label">Screen Print</div>
+          </div>
+        </div>
+        <div class="hero-tile">
+          <div class="hero-tile-inner ht3">
+            <div class="tile-emoji">🧵</div>
+            <div class="tile-label">Embroidery</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-inner">
+        <span>Custom T-Shirt Printing</span>
+        <span>Silk-Screen Printing</span>
+        <span>Graphic Design</span>
+        <span>Embroidery</span>
+        <span>Heat Transfer</span>
+        <span>Airbrushing</span>
+        <span>From Concept to Creation</span>
+        <span>Custom T-Shirt Printing</span>
+        <span>Silk-Screen Printing</span>
+        <span>Graphic Design</span>
+        <span>Embroidery</span>
+        <span>Heat Transfer</span>
+        <span>Airbrushing</span>
+        <span>From Concept to Creation</span>
+      </div>
+    </div>
+
+    <!-- Intro strip -->
+    <div class="intro-strip">
+      <div class="intro-left reveal">
+        <div class="eyebrow">What We Do</div>
+        <h2 class="section-title">Custom designs <span>tailored</span> to you.</h2>
+        <p>My Trick Pony is a boutique custom apparel and graphics studio in San Francisco's Mission District. We work hands-on with every client — whether you arrive with a fully-formed concept or just a rough idea — and we help carry it all the way through to a finished product you'll be proud to wear.</p>
+        <p>We specialize in small-run, high-quality production using time-tested techniques like silk-screen and embroidery alongside modern methods like digital heat transfer and airbrushing.</p>
+        <a href="#" class="btn btn-red-outline" style="margin-top:2rem;display:inline-flex;" onclick="showPage('services');return false;">
+          Explore Services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="intro-right reveal">
+        <div class="stat-row">
+          <div class="stat-num">100%</div>
+          <div class="stat-text">
+            <h4>Custom Made</h4>
+            <p>No templates. Every design is created from scratch to match your exact vision.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">7+</div>
+          <div class="stat-text">
+            <h4>Print Techniques</h4>
+            <p>Silk-screen, embroidery, heat transfer, airbrushing — the right method for every job.</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">1:1</div>
+          <div class="stat-text">
+            <h4>Personal Service</h4>
+            <p>We work directly with you, by appointment, to nail every detail of your project.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process steps -->
+    <div class="process-section">
+      <div class="eyebrow">How It Works</div>
+      <h2 class="section-title">From concept <span>to creation.</span></h2>
+      <div class="process-steps">
+        <div class="step reveal">
+          <span class="step-num">01</span>
+          <h3>Consultation</h3>
+          <p>We start by sitting down with you — in-person by appointment — to understand your vision, use case, quantities, and budget. This is where good work starts.</p>
+          <div class="step-arrow">→</div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">02</span>
+          <h3>Design</h3>
+          <p>Our in-house team develops custom artwork based on your brief. We collaborate closely and revise until the design is exactly right before any production begins.</p>
+          <div class="step-arrow">→</div>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">03</span>
+          <h3>Production</h3>
+          <p>Once approved, we produce your order using the most suitable method for your materials, quantities, and budget — all done with care and precision in our SF studio.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+      <div>
+        <h2>Ready to bring your<br>idea to life?</h2>
+        <p>We're by appointment only — reach out to schedule your consultation.</p>
+      </div>
+      <a href="#" class="btn btn-black" onclick="showPage('contact');return false;">
+        Book an Appointment
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="#" class="footer-logo" onclick="showPage('home');return false;">My Trick <span>Pony</span></a>
+          <p class="footer-tagline">Custom graphics &amp; apparel studio in San Francisco, CA. By appointment only.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
+            <li><a href="#" onclick="showPage('portfolio');return false;">Portfolio</a></li>
+            <li><a href="#" onclick="showPage('services');return false;">Services</a></li>
+            <li><a href="#" onclick="showPage('about');return false;">About</a></li>
+            <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#" onclick="showPage('services');return false;">Graphic Design</a></li>
+            <li><a href="#" onclick="showPage('services');return false;">T-Shirt Printing</a></li>
+            <li><a href="#" onclick="showPage('services');return false;">Silk-Screen</a></li>
+            <li><a href="#" onclick="showPage('services');return false;">Embroidery</a></li>
+            <li><a href="#" onclick="showPage('services');return false;">Airbrushing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="tel:4158610595">(415) 861-0595</a></li>
+            <li><a href="#">744 Alabama St</a></li>
+            <li><a href="#">San Francisco, CA 94110</a></li>
+            <li><a href="#" onclick="showPage('contact');return false;">Book Appointment</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 My Trick Pony. All rights reserved.</span>
+        <span>744 Alabama St · San Francisco, CA 94110</span>
+      </div>
+    </footer>
+
+  </div><!-- /home -->
+
+  <!-- ══════════════════════════════════════════
+       PORTFOLIO PAGE
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-portfolio">
+    <div class="page-header" data-bg-text="WORK">
+      <div class="eyebrow">Our Portfolio</div>
+      <h1 class="section-title">Work we're <span>proud of.</span></h1>
+      <p>A curated selection of custom projects — from single-piece commissions to full brand apparel lines. Every item below started as someone's idea.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterPort(this,'all')">All Work</button>
+      <button class="filter-btn" onclick="filterPort(this,'apparel')">Apparel</button>
+      <button class="filter-btn" onclick="filterPort(this,'prints')">Prints</button>
+      <button class="filter-btn" onclick="filterPort(this,'graphics')">Custom Graphics</button>
+      <button class="filter-btn" onclick="filterPort(this,'embroidery')">Embroidery</button>
+    </div>
+
+    <div class="portfolio-grid" id="portGrid">
+      <div class="port-item" data-cat="apparel">
+        <div class="port-img p1">👕</div>
+        <div class="port-overlay">
+          <div class="port-cat">Apparel</div>
+          <h4>Band Merch Collection</h4>
+          <p>Silk-screen on black cotton, 200-piece run</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="graphics">
+        <div class="port-img p2">🎨</div>
+        <div class="port-overlay">
+          <div class="port-cat">Custom Graphics</div>
+          <h4>Logo &amp; Brand Identity</h4>
+          <p>Full identity system for Mission District café</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="embroidery">
+        <div class="port-img p3">🧵</div>
+        <div class="port-overlay">
+          <div class="port-cat">Embroidery</div>
+          <h4>Restaurant Staff Uniforms</h4>
+          <p>Chest logo + name embroidery, 50 garments</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="prints">
+        <div class="port-img p4">🖨️</div>
+        <div class="port-overlay">
+          <div class="port-cat">Silk-Screen Print</div>
+          <h4>Event Poster Series</h4>
+          <p>5-color screen print, limited edition run of 100</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="apparel">
+        <div class="port-img p5">🎽</div>
+        <div class="port-overlay">
+          <div class="port-cat">Apparel</div>
+          <h4>Sports Team Jerseys</h4>
+          <p>Heat transfer numbers &amp; names, custom cut</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="graphics">
+        <div class="port-img p6">✏️</div>
+        <div class="port-overlay">
+          <div class="port-cat">Custom Graphics</div>
+          <h4>Illustrated Hoodie Artwork</h4>
+          <p>Original illustration → all-over print</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="prints">
+        <div class="port-img p7">🖼️</div>
+        <div class="port-overlay">
+          <div class="port-cat">Prints</div>
+          <h4>Art Print Collection</h4>
+          <p>Gallery-quality fine art giclée prints</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="embroidery">
+        <div class="port-img p8">🧢</div>
+        <div class="port-overlay">
+          <div class="port-cat">Embroidery</div>
+          <h4>Custom Cap Run</h4>
+          <p>Structured 6-panel, 3D puff embroidery</p>
+        </div>
+      </div>
+      <div class="port-item" data-cat="apparel">
+        <div class="port-img p9">🧥</div>
+        <div class="port-overlay">
+          <div class="port-cat">Apparel</div>
+          <h4>Branded Workwear</h4>
+          <p>Corporate uniform program, multi-method decoration</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner" style="margin-top:0">
+      <div>
+        <h2>Want to see your project here?</h2>
+        <p>Book a consultation and let's talk about what we can create together.</p>
+      </div>
+      <a href="#" class="btn btn-black" onclick="showPage('contact');return false;">Start Your Project →</a>
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="#" class="footer-logo" onclick="showPage('home');return false;">My Trick <span>Pony</span></a>
+          <p class="footer-tagline">Custom graphics &amp; apparel studio in San Francisco, CA.</p>
+        </div>
+        <div class="footer-col"><h5>Navigate</h5><ul>
+          <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
+          <li><a href="#" onclick="showPage('services');return false;">Services</a></li>
+          <li><a href="#" onclick="showPage('about');return false;">About</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Contact</h5><ul>
+          <li><a href="tel:4158610595">(415) 861-0595</a></li>
+          <li><a href="#">744 Alabama St, SF</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Book Appointment</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Hours</h5><ul>
+          <li><a href="#">Mon–Fri: 9am–5pm</a></li>
+          <li><a href="#">Sat–Sun: Closed</a></li>
+          <li><a href="#" style="color:var(--red)">By Appointment Only</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 My Trick Pony. All rights reserved.</span>
+        <span>744 Alabama St · San Francisco, CA 94110</span>
+      </div>
+    </footer>
+  </div><!-- /portfolio -->
+
+  <!-- ══════════════════════════════════════════
+       SERVICES PAGE
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-services">
+    <div class="page-header" data-bg-text="CRAFT">
+      <div class="eyebrow">What We Offer</div>
+      <h1 class="section-title">Every technique. <span>One studio.</span></h1>
+      <p>We offer a comprehensive range of custom decoration services — all produced with careful attention to craft, in our San Francisco studio.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="svc reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-icon">🎨</div>
+        <h3>Custom Graphic Design</h3>
+        <p>Our design process starts with your brief and ends with artwork that's truly yours. We develop original illustrations, logos, typography layouts, and full brand identities — all optimized for print production from day one.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Illustration</span>
+          <span class="svc-tag">Logo Design</span>
+          <span class="svc-tag">Typography</span>
+          <span class="svc-tag">Brand Identity</span>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">02</div>
+        <div class="svc-icon">👕</div>
+        <h3>T-Shirt &amp; Apparel Printing</h3>
+        <p>From single pieces to large runs, we print on t-shirts, hoodies, tote bags, hats, and more. We source quality blanks and will advise on the best garment and printing combination for your needs and budget.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">T-Shirts</span>
+          <span class="svc-tag">Hoodies</span>
+          <span class="svc-tag">Totes</span>
+          <span class="svc-tag">Hats</span>
+          <span class="svc-tag">All Garments</span>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">03</div>
+        <div class="svc-icon">🖨️</div>
+        <h3>Silk-Screen Printing</h3>
+        <p>The gold standard for bold, vibrant, long-lasting prints. Ideal for runs of 12+ pieces, silk-screen delivers sharp, saturated color and an authentic, tactile quality that digital methods can't replicate.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Multi-Color</span>
+          <span class="svc-tag">Spot Color</span>
+          <span class="svc-tag">Discharge</span>
+          <span class="svc-tag">Specialty Inks</span>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">04</div>
+        <div class="svc-icon">🧵</div>
+        <h3>Embroidery</h3>
+        <p>Classic and durable, embroidery adds dimension and prestige to any garment. Perfect for polos, jackets, caps, and uniforms. We handle both flat and 3D puff embroidery with fine detail and color accuracy.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Flat Embroidery</span>
+          <span class="svc-tag">3D Puff</span>
+          <span class="svc-tag">Patches</span>
+          <span class="svc-tag">Uniforms</span>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">05</div>
+        <div class="svc-icon">🔥</div>
+        <h3>Heat Transfer Printing</h3>
+        <p>A versatile option for short runs, full-color photographic images, and specialty finishes. Heat transfer allows for fine detail and gradient reproduction on a wide variety of fabric types and colors.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Full Color</span>
+          <span class="svc-tag">Short Runs</span>
+          <span class="svc-tag">Vinyl HTV</span>
+          <span class="svc-tag">Sublimation</span>
+        </div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">06</div>
+        <div class="svc-icon">🌬️</div>
+        <h3>Airbrushing</h3>
+        <p>For truly one-of-a-kind pieces, our airbrushing service delivers smooth gradients, photo-realistic effects, and hand-crafted artistry that no machine can replicate. Available for individual garments and custom art pieces.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Custom Art</span>
+          <span class="svc-tag">Gradients</span>
+          <span class="svc-tag">Portraits</span>
+          <span class="svc-tag">One-Offs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full process timeline -->
+    <div class="process-full">
+      <div class="eyebrow">Our Process</div>
+      <h2 class="section-title">How every project <span>gets made.</span></h2>
+      <div class="process-timeline">
+        <div class="pt-step reveal">
+          <div class="pt-dot"></div>
+          <div class="pt-num">Step 01</div>
+          <h4>Consultation</h4>
+          <p>We discuss your project in detail — concept, quantities, timeline, and budget. All consultations are by appointment at our Mission District studio.</p>
+        </div>
+        <div class="pt-step reveal">
+          <div class="pt-dot"></div>
+          <div class="pt-num">Step 02</div>
+          <h4>Design &amp; Approval</h4>
+          <p>Our team develops custom artwork based on your brief. We iterate together until you're completely satisfied — no production begins without your sign-off.</p>
+        </div>
+        <div class="pt-step reveal">
+          <div class="pt-dot"></div>
+          <div class="pt-num">Step 03</div>
+          <h4>Production</h4>
+          <p>We select the most suitable print method and execute your order with precision. Most projects are completed within 5–10 business days after approval.</p>
+        </div>
+        <div class="pt-step reveal">
+          <div class="pt-dot"></div>
+          <div class="pt-num">Step 04</div>
+          <h4>Delivery &amp; Pickup</h4>
+          <p>Pick up your order at our studio or arrange local delivery. We quality-check every piece before it leaves our hands.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <div>
+        <h2>Have a project in mind?</h2>
+        <p>All work starts with a conversation. We're by appointment only — let's talk.</p>
+      </div>
+      <a href="#" class="btn btn-black" onclick="showPage('contact');return false;">Book a Consultation →</a>
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="#" class="footer-logo" onclick="showPage('home');return false;">My Trick <span>Pony</span></a>
+          <p class="footer-tagline">Custom graphics &amp; apparel studio in San Francisco, CA.</p>
+        </div>
+        <div class="footer-col"><h5>Navigate</h5><ul>
+          <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
+          <li><a href="#" onclick="showPage('portfolio');return false;">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('about');return false;">About</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Contact</h5><ul>
+          <li><a href="tel:4158610595">(415) 861-0595</a></li>
+          <li><a href="#">744 Alabama St, SF</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Book Appointment</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Hours</h5><ul>
+          <li><a href="#">Mon–Fri: 9am–5pm</a></li>
+          <li><a href="#">Sat–Sun: Closed</a></li>
+          <li><a href="#" style="color:var(--red)">By Appointment Only</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 My Trick Pony. All rights reserved.</span>
+        <span>744 Alabama St · San Francisco, CA 94110</span>
+      </div>
+    </footer>
+  </div><!-- /services -->
+
+  <!-- ══════════════════════════════════════════
+       ABOUT PAGE
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-about">
+    <div class="page-header" data-bg-text="STORY">
+      <div class="eyebrow">Our Story</div>
+      <h1 class="section-title">Built on craft. <span>Driven by ideas.</span></h1>
+      <p>A small studio with a hands-on approach and a genuine passion for custom work. This is where My Trick Pony came from — and where it's going.</p>
+    </div>
+
+    <div class="about-layout">
+      <div class="about-visual">
+        <div class="about-visual-inner">🎨</div>
+        <div class="about-visual-badge">
+          744 Alabama St<br>San Francisco, CA 94110<br>By Appointment Only
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="eyebrow">About Us</div>
+        <h2>Where every idea<br>gets a <span>fighting chance.</span></h2>
+        <p>My Trick Pony was born out of a simple belief: that custom work should be truly custom. Not templated, not rushed, and not handed off to a machine the moment you walk out the door.</p>
+        <p>We're a small, dedicated studio in San Francisco's Mission District, and we've spent years honing our craft across every major print and embroidery technique in the industry. From silk-screening to airbrushing, we've invested in the skills and equipment to do every job properly.</p>
+        <p>Every project we take on is done by appointment — because we believe good work starts with a real conversation. We want to understand your idea, your audience, and what success looks like for you before a single thread is pulled or a screen is burned.</p>
+        <p>Whether you're a local band printing your first merch run, a restaurant outfitting its staff, or a designer bringing an original piece to life, we approach every job with the same level of care and attention to detail.</p>
+
+        <div class="about-values">
+          <div class="value-item">
+            <div class="v-icon">✦</div>
+            <div>
+              <h4>Genuine Craftsmanship</h4>
+              <p>Every method we offer is one we've mastered. We don't cut corners or compromise on quality.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="v-icon">🤝</div>
+            <div>
+              <h4>Client-First Collaboration</h4>
+              <p>You're part of the process from start to finish. No surprises — only work you've approved and love.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="v-icon">📍</div>
+            <div>
+              <h4>Rooted in the Mission</h4>
+              <p>We're a San Francisco small business through and through. Proud to serve our community and beyond.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-appt-notice">
+      <div class="appt-icon">📅</div>
+      <div>
+        <h3>By Appointment Only</h3>
+        <p>We operate exclusively by appointment to ensure every client gets our full attention. Please call us at <a href="tel:4158610595" style="color:var(--red)">(415) 861-0595</a> or use our <a href="#" onclick="showPage('contact');return false;" style="color:var(--red)">contact form</a> to schedule your consultation. We're open Monday through Friday, 9:00 AM – 5:00 PM.</p>
+      </div>
+    </div>
+    <div style="height:3rem;"></div>
+
+    <div class="cta-banner">
+      <div>
+        <h2>Let's make something together.</h2>
+        <p>Reach out to book a consultation and start your custom project.</p>
+      </div>
+      <a href="#" class="btn btn-black" onclick="showPage('contact');return false;">Get in Touch →</a>
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="#" class="footer-logo" onclick="showPage('home');return false;">My Trick <span>Pony</span></a>
+          <p class="footer-tagline">Custom graphics &amp; apparel studio in San Francisco, CA.</p>
+        </div>
+        <div class="footer-col"><h5>Navigate</h5><ul>
+          <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
+          <li><a href="#" onclick="showPage('portfolio');return false;">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('services');return false;">Services</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Contact</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Contact</h5><ul>
+          <li><a href="tel:4158610595">(415) 861-0595</a></li>
+          <li><a href="#">744 Alabama St, SF</a></li>
+          <li><a href="#" onclick="showPage('contact');return false;">Book Appointment</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Hours</h5><ul>
+          <li><a href="#">Mon–Fri: 9am–5pm</a></li>
+          <li><a href="#">Sat–Sun: Closed</a></li>
+          <li><a href="#" style="color:var(--red)">By Appointment Only</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 My Trick Pony. All rights reserved.</span>
+        <span>744 Alabama St · San Francisco, CA 94110</span>
+      </div>
+    </footer>
+  </div><!-- /about -->
+
+  <!-- ══════════════════════════════════════════
+       CONTACT PAGE
+  ══════════════════════════════════════════ -->
+  <div class="page" id="page-contact">
+    <div class="page-header" data-bg-text="HELLO">
+      <div class="eyebrow">Get in Touch</div>
+      <h1 class="section-title">Let's talk <span>about your project.</span></h1>
+      <p>We work by appointment only. Fill out the form below or give us a call and we'll get back to you to schedule a consultation at our San Francisco studio.</p>
+    </div>
+
+    <div class="contact-layout">
+      <!-- Info column -->
+      <div class="contact-info">
+        <h3>Find Us</h3>
+
+        <div class="info-block">
+          <div class="info-label">Phone</div>
+          <div class="info-value">
+            <a href="tel:4158610595" class="phone-big">(415) 861-0595</a>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Address</div>
+          <div class="info-value">
+            744 Alabama St<br>San Francisco, CA 94110<br>
+            <span style="font-size:0.85rem;color:var(--grey)">Mission District</span>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Business Hours</div>
+          <div class="info-value">
+            <div class="hours-grid">
+              <span class="day">Monday</span>      <span class="time">9:00 AM – 5:00 PM</span>
+              <span class="day">Tuesday</span>     <span class="time">9:00 AM – 5:00 PM</span>
+              <span class="day">Wednesday</span>   <span class="time">9:00 AM – 5:00 PM</span>
+              <span class="day">Thursday</span>    <span class="time">9:00 AM – 5:00 PM</span>
+              <span class="day">Friday</span>      <span class="time">9:00 AM – 5:00 PM</span>
+              <span class="day">Saturday</span>    <span class="time closed">Closed</span>
+              <span class="day">Sunday</span>      <span class="time closed">Closed</span>
+            </div>
+            <div class="appt-only-badge">By Appointment Only</div>
+          </div>
+        </div>
+
+        <!-- Map placeholder with real link -->
+        <div class="map-placeholder">
+          <span>📍</span>
+          <p>744 Alabama St, San Francisco, CA</p>
+          <a href="https://maps.google.com/?q=744+Alabama+St+San+Francisco+CA+94110" target="_blank" rel="noopener">Open in Google Maps →</a>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="contact-form-wrap">
+        <h3>Send a Message</h3>
+        <p class="sub">Use the form below to tell us about your project. We'll get back to you within 1 business day to discuss next steps and schedule your appointment.</p>
+
+        <div id="contactForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" placeholder="Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(415) 000-0000" />
+            </div>
+            <div class="form-group full">
+              <label for="service">Service Interested In</label>
+              <select id="service" name="service">
+                <option value="">Select a service (optional)</option>
+                <option>Custom Graphic Design</option>
+                <option>T-Shirt &amp; Apparel Printing</option>
+                <option>Silk-Screen Printing</option>
+                <option>Embroidery</option>
+                <option>Heat Transfer Printing</option>
+                <option>Airbrushing</option>
+                <option>Full Custom Project</option>
+                <option>Not sure yet — need a consultation</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="message">Tell Us About Your Project *</label>
+              <textarea id="message" name="message" placeholder="Describe your idea, quantity, timeline, or any other details that would help us prepare for your consultation..." required></textarea>
+            </div>
+          </div>
+          <button class="btn btn-solid form-submit" onclick="submitForm(event)">
+            Send Message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✓</div>
+          <h4>Message Sent.</h4>
+          <p>Thanks for reaching out to My Trick Pony. We'll review your project details and get back to you within 1 business day to schedule your appointment.<br><br>In the meantime, feel free to call us at <a href="tel:4158610595" style="color:var(--red)">(415) 861-0595</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-col">
+          <a href="#" class="footer-logo" onclick="showPage('home');return false;">My Trick <span>Pony</span></a>
+          <p class="footer-tagline">Custom graphics &amp; apparel studio in San Francisco, CA. By appointment only.</p>
+        </div>
+        <div class="footer-col"><h5>Navigate</h5><ul>
+          <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
+          <li><a href="#" onclick="showPage('portfolio');return false;">Portfolio</a></li>
+          <li><a href="#" onclick="showPage('services');return false;">Services</a></li>
+          <li><a href="#" onclick="showPage('about');return false;">About</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Contact</h5><ul>
+          <li><a href="tel:4158610595">(415) 861-0595</a></li>
+          <li><a href="#">744 Alabama St</a></li>
+          <li><a href="#">San Francisco, CA 94110</a></li>
+        </ul></div>
+        <div class="footer-col"><h5>Hours</h5><ul>
+          <li><a href="#">Mon–Fri: 9am–5pm</a></li>
+          <li><a href="#">Sat–Sun: Closed</a></li>
+          <li><a href="#" style="color:var(--red)">By Appointment Only</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 My Trick Pony. All rights reserved.</span>
+        <span>744 Alabama St · San Francisco, CA 94110</span>
+      </div>
+    </footer>
+  </div><!-- /contact -->
+
+  <!-- ═══════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════ -->
+  <script>
+    /* ── Page navigation ── */
+    const pages   = ['home','portfolio','services','about','contact'];
+    const navLinks = {
+      home:      document.getElementById('nl-home'),
+      portfolio: document.getElementById('nl-portfolio'),
+      services:  document.getElementById('nl-services'),
+      about:     document.getElementById('nl-about'),
+      contact:   document.getElementById('nl-contact'),
+    };
+
+    function showPage(id) {
+      pages.forEach(p => {
+        document.getElementById('page-'+p).classList.remove('active');
+        if (navLinks[p]) navLinks[p].classList.remove('active');
+      });
+      document.getElementById('page-'+id).classList.add('active');
+      if (navLinks[id]) navLinks[id].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // trigger reveals for newly shown page
+      setTimeout(checkReveal, 100);
+    }
+
+    /* ── Sticky nav ── */
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    /* ── Mobile menu ── */
+    function toggleMobile() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
+
+    /* ── Scroll reveal ── */
+    function checkReveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkReveal, { passive: true });
+    checkReveal();
+
+    /* ── Portfolio filter ── */
+    function filterPort(btn, cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.port-item').forEach(item => {
+        const show = cat === 'all' || item.dataset.cat === cat;
+        item.style.display = show ? '' : 'none';
+        if (show) item.style.animation = 'fadeIn 0.4s ease';
+      });
+    }
+
+    /* ── Contact form ── */
+    function submitForm(e) {
+      e.preventDefault();
+      const fname   = document.getElementById('fname').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!fname || !email || !message) {
+        alert('Please fill in your name, email, and message before sending.');
+        return;
+      }
+      const form    = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccess');
+      form.style.opacity = '0';
+      form.style.transition = 'opacity 0.3s';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+        success.style.animation = 'fadeUp 0.5s ease both';
+      }, 300);
+    }
+
+    /* ── Staggered reveal delays ── */
+    document.querySelectorAll('.step, .svc, .pt-step').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.08) + 's';
+    });
+  </script>
+</body>
+</html>
